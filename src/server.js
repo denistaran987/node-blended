@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { env } from './utils/env.js';
-import { getAllProducts } from './services/products.js';
+import { getAllProducts, getProductById } from './services/products.js';
 
 const PORT = Number(env('PORT', '3000'));
 
@@ -19,6 +19,27 @@ export const setupServer = () => {
       message: 'Successfully found products!',
       data: products,
     });
+  });
+
+  app.get('/products/:productId', async (req, res, next) => {
+    const { productId } = req.params;
+    try {
+      const product = await getProductById(productId);
+      if (!product) {
+        res.status(404).json({
+          message: 'Product not found',
+        });
+        return;
+      }
+
+      res.json({
+        status: 200,
+        message: `Successfully found product with id ${productId}!`,
+        data: product,
+      });
+    } catch (error) {
+      next(error);
+    }
   });
 
   app.use('*', (req, res) => {
