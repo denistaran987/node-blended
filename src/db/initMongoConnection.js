@@ -12,7 +12,7 @@ export const initMongoConnection = async () => {
     await mongoose.connect(
       `mongodb+srv://${user}:${password}@${url}/${db}?retryWrites=true&w=majority&appName=DataNest`,
     );
-    console.log('Server connection is established');
+    console.log('Mongo connection is successfuly established');
   } catch (error) {
     console.log(error);
   }
