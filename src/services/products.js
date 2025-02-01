@@ -5,3 +5,5 @@ export const getProductById = (productId) =>
 
 // export const getProductById = (productId) =>
 //   ProductsCollection.findOne({ _id: productId });
+export const createProduct = (productData) =>
+  ProductsCollection.create(productData);

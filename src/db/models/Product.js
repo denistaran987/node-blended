@@ -19,6 +19,7 @@ const productSchema = new Schema(
   },
   {
     timestamps: true,
+    versionKey: false,
   },
 );
 export const ProductsCollection = model('product', productSchema);
