@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { CATEGORIES } from '../../constants/index.js';
 
 const productSchema = new Schema(
   {
@@ -10,7 +11,7 @@ const productSchema = new Schema(
     category: {
       type: String,
       required: true,
-      enum: ['books', 'electronics', 'clothing', 'other'],
+      enum: CATEGORIES,
       default: 'other',
     },
     description: {
