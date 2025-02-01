@@ -3,6 +3,7 @@ import {
   createProduct,
   getAllProducts,
   getProductById,
+  updateProduct,
 } from '../services/products.js';
 import { parseFilters } from '../utils/parseFilters.js';
 
@@ -36,5 +37,21 @@ export const createProductController = async (req, res) => {
     status: 201,
     message: 'Successfully created a product!',
     data: createdProduct,
+  });
+};
+
+export const updateProductController = async (req, res) => {
+  const { productId } = req.params;
+
+  const product = await updateProduct(productId, req.body);
+
+  if (!product) {
+    throw createHttpError(404, 'Product is not found');
+  }
+
+  res.json({
+    status: 200,
+    message: 'Product is updated',
+    data: product,
   });
 };

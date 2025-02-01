@@ -6,6 +6,14 @@ export const getAllProducts = (filters) => {
     productsQuery.where('category').equals(filters.category);
   }
 
+  if (filters.minPrice) {
+    productsQuery.where('price').gte(filters.minPrice);
+  }
+
+  if (filters.maxPrice) {
+    productsQuery.where('price').lte(filters.maxPrice);
+  }
+
   return ProductsCollection.find().merge(productsQuery).exec();
 };
 export const getProductById = (productId) =>
@@ -15,3 +23,8 @@ export const getProductById = (productId) =>
 //   ProductsCollection.findOne({ _id: productId });
 export const createProduct = (productData) =>
   ProductsCollection.create(productData);
+
+export const updateProduct = (productId, productData) =>
+  ProductsCollection.findByIdAndUpdate(productId, productData, {
+    new: true,
+  });
