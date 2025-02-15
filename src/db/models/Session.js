@@ -8,4 +8,4 @@ const sessionSchema = new Schema({
   refreshTokenValidUntil: { type: Date, required: true },
 });
 
-export const SessionsCollection = model('user', sessionSchema);
+export const SessionsCollection = model('session', sessionSchema);

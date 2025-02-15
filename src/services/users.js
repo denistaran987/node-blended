@@ -12,7 +12,13 @@ export const registerUser = async (userData) => {
     password: encryptedPassword,
   });
 };
+
 export const createNewSession = async (userId) => {
   await SessionsCollection.findOneAndDelete({ userId });
   return SessionsCollection.create({ userId, ...createSession() });
 };
+
+export const findSessionByToken = (token) =>
+  SessionsCollection.findOne({ accessToken: token });
+
+export const findUserById = (userId) => UsersCollection.findById(userId);
