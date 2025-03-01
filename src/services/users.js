@@ -29,3 +29,6 @@ export const registerUser = async (userData) => {
 
   return await updateUserWithToken(user._id);
 };
+export const findUserById = (userId) => UsersCollection.findById(userId);
+export const clearToken = (userId) =>
+  UsersCollection.findByIdAndUpdate(userId, { token: '' });
