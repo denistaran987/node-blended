@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import { env } from './utils/env.js';
-import productsRouter from './routers/products.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import usersRouter from './routers/users.js';
 
@@ -14,7 +13,6 @@ export const setupServer = () => {
   app.use(cors());
 
   app.use('/users', usersRouter);
-  app.use('/products', productsRouter);
   app.use('*', (req, res) => {
     res.status(404).json({
       message: 'Route not found',
